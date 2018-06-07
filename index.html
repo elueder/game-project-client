@@ -26,7 +26,17 @@
       <form id="sign-in-form">
         <input name="credentials[email]" type="text" placeholder="Email">
         <input name="credentials[password]" type="password" placeholder="Password">
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
       </form>
+
+      <h3>Change Password</h3>
+      <form id="change-password-form" class="form-block">
+        <input type="password" name="passwords[old]" placeholder="Old Password">
+        <input type="password" name="passwords[new]" placeholder="New Password">
+        <button type="submit">Change it up</button>
+      </form>
+
+      <button id="sign-out">Sign Out</button>
+
     </body>
 </html>
