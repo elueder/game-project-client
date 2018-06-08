@@ -3,18 +3,22 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $black: #000;
-$background-color: #ffffff;
+$background-color: #fff;
 $desktop-size: 130px;
 $game-button-size: 120px;
 $border-width: 2px;
 
+body {
+  background-color: $background-color;
+}
+
 .col-md-2,
 .col-xs-2 {
+  align-items: center;
   border: solid $black $border-width;
   height: $desktop-size;
-  width: $desktop-size;
   padding: $border-width;
-  align-items: center;
+  width: $desktop-size;
 }
 
 .row {
@@ -44,7 +48,7 @@ $border-width: 2px;
 .game-button {
   background-color: $background-color;
   border: $background-color;
-  color: $background-color;
+  // color: $background-color;
   height: $game-button-size;
   width: $game-button-size;
 }
