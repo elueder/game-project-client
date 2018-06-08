@@ -1,2 +1,50 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$black: #000;
+$background-color: #ffffff;
+$desktop-size: 130px;
+$game-button-size: 120px;
+$border-width: 2px;
+
+.col-md-2,
+.col-xs-2 {
+  border: solid $black $border-width;
+  height: $desktop-size;
+  width: $desktop-size;
+  padding: $border-width;
+  align-items: center;
+}
+
+.row {
+  display: block;
+}
+
+.top {
+  border-top: 0;
+}
+
+.left {
+  border-left: 0;
+}
+
+.right {
+  border-right: 0;
+}
+
+.bottom {
+  border-bottom: 0;
+}
+
+.game-board {
+  padding: 40px;
+}
+
+.game-button {
+  background-color: $background-color;
+  border: $background-color;
+  color: $background-color;
+  height: $game-button-size;
+  width: $game-button-size;
+}
