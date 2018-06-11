@@ -11,6 +11,7 @@ const switchLetter = function (event) {
   }
   $(event.target).text(letter)
   turn += 1
+  $(event.target.id).prop('disabled', true)
   // console.log('event.target is ', event.target)
   // console.log('turn number is ', turn)
   return turn
