@@ -42,9 +42,9 @@ const indexToPush = function () {
   // console.log('indexSpot is ', indexSpot)
 }
 
-const game = ['', '', '', '', '', '', '', '', '']
-const xSpots = []
-const oSpots = []
+let game = ['', '', '', '', '', '', '', '', '']
+let xSpots = []
+let oSpots = []
 
 const addToArray = function () {
   if (turn % 2 === 1) {
@@ -82,24 +82,49 @@ const wins = [
 let xWin = false
 let oWin = false
 
+let xWins = 0
+let oWins = 0
+
 const checkForWin = function (element) {
   for (let i = 0; i < wins.length; i++) {
     if (xSpots.includes(wins[i][0]) && xSpots.includes(wins[i][1]) && xSpots.includes(wins[i][2])) {
       // console.log('x won')
       xWin = true
+      xWins += 1
     } else if (oSpots.includes(wins[i][0]) && oSpots.includes(wins[i][1]) && oSpots.includes(wins[i][2])) {
       // console.log('o won')
       oWin = true
+      oWins += 1
     }
   }
-  // console.log('xWin is ', xWin, ' and oWin is ', oWin)
-  return (xWin && oWin)
+  console.log('xWins is ', xWins, ' and oWins is ', oWins)
+  return (xWin && oWin && xWins && oWins)
 }
 
 const stopClick = function () {
   if (xWin === true || oWin === true) {
     $('.game-button').prop('disabled', true)
   }
+}
+
+const onNewGame = function (event) {
+  $('#gb1').html('').prop('disabled', false)
+  $('#gb2').html('').prop('disabled', false)
+  $('#gb3').html('').prop('disabled', false)
+  $('#gb4').html('').prop('disabled', false)
+  $('#gb5').html('').prop('disabled', false)
+  $('#gb6').html('').prop('disabled', false)
+  $('#gb7').html('').prop('disabled', false)
+  $('#gb8').html('').prop('disabled', false)
+  $('#gb9').html('').prop('disabled', false)
+  // $('.game-button').prop('disabled', false)
+  game = ['', '', '', '', '', '', '', '', '']
+  xSpots = []
+  oSpots = []
+  xWin = false
+  oWin = false
+  turn = 0
+  return (game && xSpots && oSpots && xWin && oWin && turn)
 }
 
 module.exports = {
@@ -109,5 +134,6 @@ module.exports = {
   addToArray,
   xAndOInOrder,
   checkForWin,
-  stopClick
+  stopClick,
+  onNewGame
 }

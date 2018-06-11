@@ -2,8 +2,8 @@
 
 const gameEvents = require('./game-logic/events')
 
-const playerX = 'X'
-const playerO = 'O'
+// const playerX = 'X'
+// const playerO = 'O'
 
 const gameClick = function (event) {
   gameEvents.switchLetter(event)
