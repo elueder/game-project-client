@@ -14,5 +14,5 @@ $(() => {
   $('#sign-in-form').on('submit', authEvents.onSignIn)
   $('#change-password-form').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
-  $('.game-button').one('click', gameLogic.switchLetter)
+  $('.game-button').one('click', gameLogic.gameClick)
 })
