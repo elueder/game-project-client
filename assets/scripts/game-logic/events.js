@@ -1,5 +1,15 @@
 'use strict'
 
+const createGameApiConnection = require('../game-api/events')
+
+const game = {
+  gameArray: ['', '', '', '', '', '', '', '', ''],
+  over: false,
+  winner: '',
+  xWins: 0,
+  oWins: 0
+}
+
 let turn = 0
 const switchLetter = function (event) {
   // console.log('event is ', event)
@@ -42,29 +52,28 @@ const indexToPush = function () {
   // console.log('indexSpot is ', indexSpot)
 }
 
-let game = ['', '', '', '', '', '', '', '', '']
 let xSpots = []
 let oSpots = []
 
 const addToArray = function () {
   if (turn % 2 === 1) {
-    game.splice(indexSpot, 0, 'X')
-    console.log('in addToArray game is', game)
+    game.gameArray.splice(indexSpot, 1, 'X')
+    // console.log('in addToArray game is', game)
     xSpots.push(indexSpot)
-    console.log('xSpots is ', xSpots)
+    // console.log('xSpots is ', xSpots)
   } else if (turn % 2 === 0) {
-    game.splice(indexSpot, 0, 'O')
-    console.log('in addToArray game is', game)
+    game.gameArray.splice(indexSpot, 1, 'O')
+    // console.log('in addToArray game is', game)
     oSpots.push(indexSpot)
-    console.log('oSpots is ', oSpots)
+    // console.log('oSpots is ', oSpots)
   }
-  return (game && xSpots && oSpots)
+  return (game.gameArray && xSpots && oSpots)
 }
 
 const xAndOInOrder = function () {
   xSpots.sort()
   oSpots.sort()
-  console.log('in order arrays are ', xSpots, oSpots)
+  // console.log('in order arrays are ', xSpots, oSpots)
   return (xSpots && oSpots)
 }
 
@@ -82,29 +91,34 @@ const wins = [
 let xWin = false
 let oWin = false
 
-let xWins = 0
-let oWins = 0
-
 const checkForWin = function (element) {
   for (let i = 0; i < wins.length; i++) {
     if (xSpots.includes(wins[i][0]) && xSpots.includes(wins[i][1]) && xSpots.includes(wins[i][2])) {
       // console.log('x won')
       xWin = true
-      xWins += 1
+      game.xWins += 1
+      game.winner = 'X'
     } else if (oSpots.includes(wins[i][0]) && oSpots.includes(wins[i][1]) && oSpots.includes(wins[i][2])) {
       // console.log('o won')
       oWin = true
-      oWins += 1
+      game.oWins += 1
+      game.winner = 'O'
     }
   }
-  console.log('xWins is ', xWins, ' and oWins is ', oWins)
-  return (xWin && oWin && xWins && oWins)
+  console.log('xWins is ', game.xWins, ' and oWins is ', game.oWins)
+  return (xWin && oWin && game.xWins && game.oWins)
 }
 
 const stopClick = function () {
   if (xWin === true || oWin === true) {
+    game.over = true
     $('.game-button').prop('disabled', true)
+    return game
   }
+}
+
+const checkGameObj = function () {
+  console.log('in checkGameObj game is ', game)
 }
 
 const onNewGame = function (event) {
@@ -118,16 +132,18 @@ const onNewGame = function (event) {
   $('#gb8').html('').prop('disabled', false)
   $('#gb9').html('').prop('disabled', false)
   // $('.game-button').prop('disabled', false)
-  game = ['', '', '', '', '', '', '', '', '']
+  game.gameArray = ['', '', '', '', '', '', '', '', '']
   xSpots = []
   oSpots = []
   xWin = false
   oWin = false
   turn = 0
-  return (game && xSpots && oSpots && xWin && oWin && turn)
+  createGameApiConnection.onCreateGame()
+  return (game.gameArray && xSpots && oSpots && xWin && oWin && turn)
 }
 
 module.exports = {
+  game,
   switchLetter,
   spotPlayed,
   indexToPush,
@@ -135,5 +151,6 @@ module.exports = {
   xAndOInOrder,
   checkForWin,
   stopClick,
-  onNewGame
+  onNewGame,
+  checkGameObj
 }

@@ -11,13 +11,19 @@ const gameLogic = require('./game')
 
 const gameEvents = require('./game-logic/events')
 
+const gameApi = require('./game-api/events')
 // const newGame = require('./game-logic/new-game')
 
 $(() => {
+  // all in auth/
   $('#sign-up-form').on('submit', authEvents.onSignUp)
   $('#sign-in-form').on('submit', authEvents.onSignIn)
   $('#change-password-form').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
+  // in game.js
   $('.game-button').on('click', gameLogic.gameClick)
-  $('#new-game').on('click', gameEvents.onNewGame)
+  // in game-logic/events.js
+  $('#game-create').on('click', gameEvents.onNewGame)
+  // in game-api/
+  gameApi.addHandlers()
 })
