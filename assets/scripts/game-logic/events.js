@@ -41,7 +41,7 @@ const indexToPush = function () {
   // console.log('indexSpot is ', indexSpot)
 }
 
-const game = []
+const game = ['', '', '', '', '', '', '', '', '']
 const xSpots = []
 const oSpots = []
 
@@ -78,22 +78,35 @@ const wins = [
   [2, 4, 6]
 ]
 
-// not working :
-// const checkForWin = function () {
-//   for (let i = 0; i < wins.length; i++) {
-//     if (xSpots === wins[i]) {
-//       console.log('X wins!')
-//     } else if (oSpots === wins[i]) {
-//       console.log('O wins!')
-//     }
-//   }
-// }
+let xWin = false
+let oWin = false
+
+const checkForWin = function (element) {
+  for (let i = 0; i < wins.length; i++) {
+    if (xSpots.includes(wins[i][0]) && xSpots.includes(wins[i][1]) && xSpots.includes(wins[i][2])) {
+      // console.log('x won')
+      xWin = true
+    } else if (oSpots.includes(wins[i][0]) && oSpots.includes(wins[i][1]) && oSpots.includes(wins[i][2])) {
+      // console.log('o won')
+      oWin = true
+    }
+  }
+  // console.log('xWin is ', xWin, ' and oWin is ', oWin)
+  return (xWin && oWin)
+}
+
+const stopClick = function () {
+  if (xWin === true || oWin === true) {
+    $('.game-button').prop('disabled', true)
+  }
+}
 
 module.exports = {
   switchLetter,
   spotPlayed,
   indexToPush,
   addToArray,
-  xAndOInOrder
-  // checkForWin
+  xAndOInOrder,
+  checkForWin,
+  stopClick
 }

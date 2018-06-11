@@ -12,6 +12,7 @@ const gameClick = function (event) {
   gameEvents.addToArray()
   gameEvents.xAndOInOrder()
   gameEvents.checkForWin()
+  gameEvents.stopClick()
 }
 
 module.exports = {
