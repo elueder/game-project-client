@@ -46,9 +46,16 @@ const onSignOut = function (event) {
     .catch(authUi.signOutFail)
 }
 
+const onNewGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  console.log('onNewGame data is ', data)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  onNewGame
 }
