@@ -1,7 +1,5 @@
 'use strict'
 
-const store = require('../store')
-
 const getFormFields = require('../../../lib/get-form-fields')
 const authApi = require('./api')
 const authUi = require('./ui')
@@ -21,10 +19,7 @@ const onSignIn = function (event) {
   const data = getFormFields(event.target)
   console.log('in signIn data is ', data)
   authApi.signIn(data)
-    .then((result) => {
-      store.token = result.user.token
-    },
-    authUi.signInSuccess)
+    .then(authUi.signInSuccess)
     .catch(authUi.signInError)
 }
 
@@ -44,6 +39,7 @@ const onSignOut = function (event) {
   authApi.signOut(data)
     .then(authUi.signOutSuccess)
     .catch(authUi.signOutFail)
+  authUi.signedOutState()
 }
 
 module.exports = {

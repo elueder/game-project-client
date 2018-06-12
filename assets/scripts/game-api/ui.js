@@ -21,17 +21,17 @@ const getGamesFail = function (error) {
 }
 
 const createGameSuccess = function (data) {
-  $('#content').html('')
+  // $('#content').html('')
   store.game = data.game
   console.log('store.game is ', store.over)
-  // $('#content').append(bookHtml)
+  gameState()
 }
 
 const createGameFail = function (error) {
   console.log(error)
 
   $('#content').html(`
-    <div class="alert alert-warning">That ID doesn't exist.</div>
+    <div class="alert alert-warning">Server Error.</div>
   `)
 }
 
@@ -53,6 +53,11 @@ const getGameFail = function (error) {
   $('#content').html(`
     <div class="alert alert-warning">That ID doesn't exist.</div>
   `)
+}
+
+const gameState = function () {
+  $('#game-board, #home').removeClass('hidden')
+  $('#sign-up-form, #sign-in-form').addClass('hidden')
 }
 
 module.exports = {
