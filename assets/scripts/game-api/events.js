@@ -3,13 +3,14 @@
 const api = require('./api.js')
 const ui = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields.js')
-const gameLogicEvents = require('../game-logic/events')
+const store = require('../store')
+const gameLogicEvents = require('../game-logic/game-logic')
 
 const addHandlers = function () {
   $('#games-index').on('click', onGetGames)
-  // create game is linked in game-logic/events.js
+  $('#game-create').on('click', onCreateGame)
   $('#games-show').on('submit', onGetGame)
-  $('#games-update').on('submit', onUpdateGame)
+  // $('.game-button').on('submit', onUpdateGame)
 }
 
 const onGetGames = function () {
@@ -22,14 +23,12 @@ const onGetGames = function () {
 
 const onCreateGame = function (event) {
   console.log('clicked the button!')
-  // event.preventDefault()
-  const data = getFormFields(event.target)
-  console.log(data)
-
-  // data = all info from form fields
+  event.preventDefault()
+  const data = {}
   api.createGame(data)
     .then(ui.createGameSuccess)
     .catch(ui.createGameFail)
+  gameLogicEvents.onNewGame()
 }
 
 const onGetGame = function (event) {
@@ -37,21 +36,26 @@ const onGetGame = function (event) {
   console.log('clicked the button!')
   const form = event.target
   const data = getFormFields(form)
-  console.log(data.book.id)
+  console.log('data.game in onGetGame is ', data.game)
 
-  const id = data.book.id
-  api.getGame(id)
+  // const id = data.game.id
+  api.getGame(data)
     .then(ui.getGameSuccess)
     .catch(ui.getGameFail)
 }
 
 const onUpdateGame = function (event) {
   event.preventDefault()
-  console.log('clicked the button!')
-  const data = getFormFields(event.target)
-  console.log(data)
-
-  // data = all info from form fields
+  const data = {
+    game: {
+      cell: {
+        index: store.index,
+        value: store.value
+      },
+      over: store.over
+    }
+  }
+  // console.log('in onUpdateGame data is ', data)
   api.updateGame(data)
     .then(ui.updateGameSuccess)
     .catch(ui.updateGameFail)
@@ -59,5 +63,6 @@ const onUpdateGame = function (event) {
 
 module.exports = {
   addHandlers,
-  onCreateGame
+  onCreateGame,
+  onUpdateGame
 }

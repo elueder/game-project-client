@@ -9,7 +9,7 @@ const authEvents = require('./auth/events')
 // const gameEvents = require('./game-logic/events')
 const gameLogic = require('./game')
 
-const gameEvents = require('./game-logic/events')
+const gameEvents = require('./game-logic/game-logic')
 
 const gameApi = require('./game-api/events')
 // const newGame = require('./game-logic/new-game')

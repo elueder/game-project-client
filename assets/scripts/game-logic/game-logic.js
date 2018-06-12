@@ -1,6 +1,6 @@
 'use strict'
 
-const createGameApiConnection = require('../game-api/events')
+const store = require('../store')
 
 const game = {
   gameArray: ['', '', '', '', '', '', '', '', ''],
@@ -11,9 +11,10 @@ const game = {
 }
 
 let turn = 0
+let letter = ''
+
 const switchLetter = function (event) {
   // console.log('event is ', event)
-  let letter
   if (turn % 2 === 0) {
     letter = 'X'
   } else {
@@ -22,9 +23,10 @@ const switchLetter = function (event) {
   $(event.target).text(letter)
   turn += 1
   $(event.target.id).prop('disabled', true)
+  store.value = letter
   // console.log('event.target is ', event.target)
   // console.log('turn number is ', turn)
-  return turn
+  return (turn && letter)
 }
 
 const gameIds = [
@@ -45,11 +47,18 @@ const findRightIndex = function (element) {
   return element === id
 }
 
-let indexSpot
+let indexSpot = null
 
 const indexToPush = function () {
   indexSpot = gameIds.findIndex(findRightIndex)
+  store.index = indexSpot
+  return indexSpot
   // console.log('indexSpot is ', indexSpot)
+}
+
+store.cell = {
+  index: indexSpot,
+  value: letter
 }
 
 let xSpots = []
@@ -112,6 +121,7 @@ const checkForWin = function (element) {
 const stopClick = function () {
   if (xWin === true || oWin === true) {
     game.over = true
+    store.over = true
     $('.game-button').prop('disabled', true)
     return game
   }
@@ -138,7 +148,7 @@ const onNewGame = function (event) {
   xWin = false
   oWin = false
   turn = 0
-  createGameApiConnection.onCreateGame()
+  // createGameApiConnection.onCreateGame(event)
   return (game.gameArray && xSpots && oSpots && xWin && oWin && turn)
 }
 
@@ -152,5 +162,7 @@ module.exports = {
   checkForWin,
   stopClick,
   onNewGame,
-  checkGameObj
+  checkGameObj,
+  indexSpot: indexSpot,
+  letter: letter
 }

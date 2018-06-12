@@ -81,25 +81,26 @@
         </div>
       </div>
 
-      <h3>Show all games</h3>
+      <h3>How many games have you played?</h3>
       <button id="games-index" name="button" type="submit">Show all games</button>
 
       <h3>New Game</h3>
       <button id="game-create" name="button" type="button">New Game</button>
 
-      <h3>Get one game</h3>
+      <h3>Game complete?</h3>
         <form id="games-show">
-          <input type="text" placeholder="Game ID Number" name="book[id]">
-          <button type="submit">Get game</button>
+          <input type="text" placeholder="Game ID Number" name="game[id]">
+          <button type="submit">Check game</button>
         </form>
 
-      <h3>Update a game</h3>
+      <!-- <h3>Update a game</h3>
       <form id="games-update">
         <input name="game[cell][index]" type="text" value="0" placeholder="cell index">
         <input name="game[cell][value]" type="text" value="x" placeholder="X or O">
         <input name="game[over]" type="text" value="false" placeholder="Game Over: true or false?">
         <button type="submit">Update Game</button>
-      </form>
+      </form> -->
 
+      <div id="content"></div>
     </body>
 </html>
