@@ -15,14 +15,12 @@ const addHandlers = function () {
 
 const onGetGames = function () {
   event.preventDefault()
-  console.log('clicked the button!')
   api.getGames()
     .then(ui.getGamesSuccess)
     .catch(ui.getGamesFail)
 }
 
 const onCreateGame = function (event) {
-  console.log('clicked the button!')
   event.preventDefault()
   const data = {}
   api.createGame(data)
@@ -33,12 +31,8 @@ const onCreateGame = function (event) {
 
 const onGetGame = function (event) {
   event.preventDefault()
-  console.log('clicked the button!')
   const form = event.target
   const data = getFormFields(form)
-  console.log('data.game in onGetGame is ', data.game)
-
-  // const id = data.game.id
   api.getGame(data)
     .then(ui.getGameSuccess)
     .catch(ui.getGameFail)
@@ -55,7 +49,7 @@ const onUpdateGame = function (event) {
       over: store.over
     }
   }
-  // console.log('in onUpdateGame data is ', data)
+
   api.updateGame(data)
     .then(ui.updateGameSuccess)
     .catch(ui.updateGameFail)

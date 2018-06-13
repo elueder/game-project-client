@@ -58,3 +58,24 @@ body {
 .hidden {
   display: none;
 }
+
+.form-field-stuff {
+  clear: both;
+  float: right;
+  overflow: hidden;
+}
+
+.header {
+  float: left;
+  overflow: hidden;
+}
+
+#game-board {
+  clear: both;
+  float: left;
+  overflow: hidden;
+}
+
+.alert-msg {
+  clear: both;
+}

@@ -14,7 +14,6 @@ let turn = 0
 let letter = ''
 
 const switchLetter = function (event) {
-  // console.log('event is ', event)
   if (turn % 2 === 0) {
     letter = 'X'
   } else {
@@ -24,8 +23,6 @@ const switchLetter = function (event) {
   turn += 1
   $(event.target.id).prop('disabled', true)
   store.value = letter
-  // console.log('event.target is ', event.target)
-  // console.log('turn number is ', turn)
   return (turn && letter)
 }
 
@@ -38,7 +35,6 @@ const gameIds = [
 let id
 
 const spotPlayed = function (event) {
-  // console.log('event.target.id in spotPlayed is ', event.target.id)
   id = event.target.id
   return event.target.id
 }
@@ -53,7 +49,6 @@ const indexToPush = function () {
   indexSpot = gameIds.findIndex(findRightIndex)
   store.index = indexSpot
   return indexSpot
-  // console.log('indexSpot is ', indexSpot)
 }
 
 store.cell = {
@@ -67,14 +62,10 @@ let oSpots = []
 const addToArray = function () {
   if (turn % 2 === 1) {
     game.gameArray.splice(indexSpot, 1, 'X')
-    // console.log('in addToArray game is', game)
     xSpots.push(indexSpot)
-    // console.log('xSpots is ', xSpots)
   } else if (turn % 2 === 0) {
     game.gameArray.splice(indexSpot, 1, 'O')
-    // console.log('in addToArray game is', game)
     oSpots.push(indexSpot)
-    // console.log('oSpots is ', oSpots)
   }
   return (game.gameArray && xSpots && oSpots)
 }
@@ -82,7 +73,6 @@ const addToArray = function () {
 const xAndOInOrder = function () {
   xSpots.sort()
   oSpots.sort()
-  // console.log('in order arrays are ', xSpots, oSpots)
   return (xSpots && oSpots)
 }
 
@@ -103,32 +93,44 @@ let oWin = false
 const checkForWin = function (element) {
   for (let i = 0; i < wins.length; i++) {
     if (xSpots.includes(wins[i][0]) && xSpots.includes(wins[i][1]) && xSpots.includes(wins[i][2])) {
-      // console.log('x won')
       xWin = true
       game.xWins += 1
       game.winner = 'X'
     } else if (oSpots.includes(wins[i][0]) && oSpots.includes(wins[i][1]) && oSpots.includes(wins[i][2])) {
-      // console.log('o won')
       oWin = true
       game.oWins += 1
       game.winner = 'O'
     }
   }
-  console.log('xWins is ', game.xWins, ' and oWins is ', game.oWins)
   return (xWin && oWin && game.xWins && game.oWins)
 }
 
 const stopClick = function () {
-  if (xWin === true || oWin === true) {
+  if (xWin === true || oWin === true || turn === 9) {
     game.over = true
     store.over = true
     $('.game-button').prop('disabled', true)
+    if (xWin === true) {
+      $('#game-alert').html(`
+        <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+        X won!!</div>
+        `)
+    } else if (oWin === true) {
+      $('#game-alert').html(`
+        <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+        O won!!</div>
+        `)
+    } else if (turn === 9) {
+      $('#game-alert').html(`
+        <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+        Tie game.</div>
+        `)
+    }
     return game
   }
-}
-
-const checkGameObj = function () {
-  console.log('in checkGameObj game is ', game)
 }
 
 const onNewGame = function (event) {
@@ -148,6 +150,7 @@ const onNewGame = function (event) {
   xWin = false
   oWin = false
   turn = 0
+  $('#game-alert').html(``)
   // createGameApiConnection.onCreateGame(event)
   return (game.gameArray && xSpots && oSpots && xWin && oWin && turn)
 }
@@ -162,7 +165,6 @@ module.exports = {
   checkForWin,
   stopClick,
   onNewGame,
-  checkGameObj,
   indexSpot: indexSpot,
   letter: letter
 }

@@ -3,55 +3,66 @@
 const store = require('../store')
 
 const getGamesSuccess = function (data) {
+  $('#num-user-message').html('')
   $('#content').html('')
-  console.log('AJAX request finished')
   let count = 0
   data.games.forEach(function () {
     count += 1
   })
-  console.log('at end count is ', count)
+  $('#num-user-message').html(`
+    <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+    Number of games played: ${count}</div>
+    `)
 }
 
-const getGamesFail = function (error) {
-  console.log(error)
-
-  $('#content').html(`
-    <div class="alert alert-warning">We can't count today!</div>
+const getGamesFail = function () {
+  $('#num-user-message').html('')
+  $('#content').html('')
+  $('#num-user-message').html(`
+    <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+    We can't count today!</div>
   `)
 }
 
 const createGameSuccess = function (data) {
-  // $('#content').html('')
+  $('#new-game-user-message').html('')
+  $('#content').html('')
   store.game = data.game
-  console.log('store.game is ', store.over)
+  $('#new-game-user-message').html(`
+    <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+    New Game Started!</div>
+    `)
   gameState()
 }
 
-const createGameFail = function (error) {
-  console.log(error)
-
-  $('#content').html(`
+const createGameFail = function () {
+  $('#new-game-user-message').html('')
+  $('#content').html('')
+  $('#new-game-user-message').html(`
     <div class="alert alert-warning">Server Error.</div>
   `)
 }
 
 const getGameSuccess = function (data) {
   $('#content').html('')
-  console.log('data.game is ', data.game)
   const gameHtml = (`
-    <hr>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
       <h4>Game over: ${data.game.over}</h4>
       <p>ID: ${data.game.id}</p>
-      `)
+    </div>`)
   // push book elements to content div
   $('#content').append(gameHtml)
 }
 
-const getGameFail = function (error) {
-  console.log(error)
-
+const getGameFail = function () {
   $('#content').html(`
-    <div class="alert alert-warning">That ID doesn't exist.</div>
+    <div class="alert alert-warning">
+    <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
+    Couldn't find that ID.</div>
   `)
 }
 
