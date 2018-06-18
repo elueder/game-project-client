@@ -2,9 +2,12 @@
 
 const gameEvents = require('./game-logic/game-logic')
 const gameApiEvents = require('./game-api/events')
+const store = require('./store')
 
 const gameClick = function (event) {
-  if (event.target.innerHTML !== '') {
+  if (store.over === true) {
+    return
+  } else if (event.target.innerHTML !== '') {
     console.log('button already clicked')
   } else {
     gameEvents.switchLetter(event)
