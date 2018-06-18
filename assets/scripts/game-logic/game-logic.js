@@ -19,9 +19,12 @@ const switchLetter = function (event) {
   } else {
     letter = 'O'
   }
-  $(event.target).text(letter)
+  $(event.target).html(letter)
   turn += 1
   $(event.target.id).prop('disabled', true)
+  // console.log('event.target.id.prop is ', event.target.id.prop)
+  // console.log('event.target.id is ', event.target.id)
+  // console.log('event.target is ', event.target)
   store.value = letter
   return (turn && letter)
 }
@@ -109,7 +112,7 @@ const stopClick = function () {
   if (xWin === true || oWin === true || turn === 9) {
     game.over = true
     store.over = true
-    $('.game-button').prop('disabled', true)
+    // $('.game-button').prop('disabled', true)
     if (xWin === true) {
       $('#game-alert').html(`
         <div class="alert alert-success alert-dismissable">
@@ -143,7 +146,7 @@ const onNewGame = function (event) {
   $('#gb7').html('').prop('disabled', false)
   $('#gb8').html('').prop('disabled', false)
   $('#gb9').html('').prop('disabled', false)
-  // $('.game-button').prop('disabled', false)
+  // $('.game-button').innerHTML('')
   game.gameArray = ['', '', '', '', '', '', '', '', '']
   xSpots = []
   oSpots = []
