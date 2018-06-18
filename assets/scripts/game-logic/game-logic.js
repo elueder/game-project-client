@@ -153,6 +153,7 @@ const onNewGame = function (event) {
   xWin = false
   oWin = false
   turn = 0
+  store.over = false
   $('#game-alert').html(``)
   // createGameApiConnection.onCreateGame(event)
   return (game.gameArray && xSpots && oSpots && xWin && oWin && turn)
