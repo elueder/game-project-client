@@ -15,7 +15,7 @@ body {
 
 .col-md-2,
 .col-xs-2 {
-  align-items: center;
+  align-items: left;
   border: solid $black $border-width;
   font-size: $game-piece-size;
   height: $desktop-size;
@@ -43,9 +43,10 @@ body {
   border-bottom: 0;
 }
 
-.game-board {
-  padding: 40px;
-}
+// .game-board {
+//   float: left;
+//   padding: 40px;
+// }
 
 .game-button {
   background-color: $background-color;
@@ -60,9 +61,11 @@ body {
 }
 
 .form-field-stuff {
+  float: left;
   clear: both;
-  float: right;
-  overflow: hidden;
+  // overflow: hidden;
+  display: inline;
+  width: auto;
 }
 
 .header {
@@ -71,11 +74,17 @@ body {
 }
 
 #game-board {
-  clear: both;
-  float: left;
+  // clear: both;
+  float: right;
   overflow: hidden;
+  display: inline;
 }
 
 .alert-msg {
   clear: both;
 }
+
+// .clearfix {
+//   clear: both;
+//   display: inline;
+// }
