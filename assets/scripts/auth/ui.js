@@ -3,18 +3,17 @@
 const store = require('../store')
 
 const signUpSuccess = function (signUpResponse) {
-  $('#sign-in-user-message').html('')
-  signedInState()
-  $('#sign-in-user-message').html(`
+  $('#msg-container').html('')
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
-    Signed in!</div>
+    Signed up! Please sign in.</div>
     `)
 }
 
 const signUpError = function () {
-  $('#sign-in-fail').html('')
-  $('#sign-in-fail').html(`
+  $('#msg-container').html('')
+  $('#msg-container').html(`
     <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't create user.</div>
@@ -24,7 +23,7 @@ const signUpError = function () {
 const signInSuccess = function (signInResponse) {
   store.token = signInResponse.user.token
   signedInState()
-  $('#sign-in-user-message').html(`
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Signed in!</div>
@@ -32,8 +31,8 @@ const signInSuccess = function (signInResponse) {
 }
 
 const signInError = function () {
-  $('#sign-in-fail').html('')
-  $('#sign-in-fail').html(`
+  $('#msg-container').html('')
+  $('#msg-container').html(`
     <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't sign in.</div>
@@ -42,7 +41,7 @@ const signInError = function () {
 
 const signOutSuccess = function (signOutResponse) {
   signedOutState()
-  $('#sign-in-user-message').html(`
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Signed out.</div>
@@ -50,7 +49,7 @@ const signOutSuccess = function (signOutResponse) {
 }
 
 const signOutError = function (signOutResponse) {
-  $('#sign-in-fail').html(`
+  $('#msg-container').html(`
     <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't sign out.</div>
@@ -58,7 +57,7 @@ const signOutError = function (signOutResponse) {
 }
 
 const changePasswordSuccess = function () {
-  $('#sign-in-user-message').html(`
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Changed password!</div>
@@ -66,7 +65,7 @@ const changePasswordSuccess = function () {
 }
 
 const changePasswordError = function () {
-  $('#sign-in-fail').html(`
+  $('#msg-container').html(`
     <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't change password.</div>

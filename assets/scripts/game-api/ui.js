@@ -3,13 +3,13 @@
 const store = require('../store')
 
 const getGamesSuccess = function (data) {
-  $('#num-user-message').html('')
-  $('#content').html('')
+  $('#msg-container').html('')
+  // $('#content').html('')
   let count = 0
   data.games.forEach(function () {
     count += 1
   })
-  $('#num-user-message').html(`
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Number of games played: ${count}</div>
@@ -17,9 +17,9 @@ const getGamesSuccess = function (data) {
 }
 
 const getGamesFail = function () {
-  $('#num-user-message').html('')
-  $('#content').html('')
-  $('#num-user-message').html(`
+  $('#msg-container').html('')
+  // $('#content').html('')
+  $('#msg-container').html(`
     <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     We can't count today!</div>
@@ -27,10 +27,10 @@ const getGamesFail = function () {
 }
 
 const createGameSuccess = function (data) {
-  $('#new-game-user-message').html('')
-  $('#content').html('')
+  $('#msg-container').html('')
+  // $('#content').html('')
   store.game = data.game
-  $('#new-game-user-message').html(`
+  $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     New Game Started!</div>
@@ -39,15 +39,15 @@ const createGameSuccess = function (data) {
 }
 
 const createGameFail = function () {
-  $('#new-game-user-message').html('')
-  $('#content').html('')
-  $('#new-game-user-message').html(`
+  $('#msg-container').html('')
+  // $('#content').html('')
+  $('#msg-container').html(`
     <div class="alert alert-warning">Server Error.</div>
   `)
 }
 
 const getGameSuccess = function (data) {
-  $('#content').html('')
+  $('#msg-container').html('')
   const gameHtml = (`
     <div class="alert alert-success alert-dismissable">
       <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
@@ -55,11 +55,11 @@ const getGameSuccess = function (data) {
       <p>ID: ${data.game.id}</p>
     </div>`)
   // push book elements to content div
-  $('#content').append(gameHtml)
+  $('#msg-container').append(gameHtml)
 }
 
 const getGameFail = function () {
-  $('#content').html(`
+  $('#msg-container').html(`
     <div class="alert alert-warning">
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't find that ID.</div>
