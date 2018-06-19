@@ -111,19 +111,19 @@ const stopClick = function () {
     store.over = true
     $('.game-button').prop('disabled', true)
     if (xWin === true) {
-      $('#game-alert').html(`
+      $('#msg-container').html(`
         <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
         X won!!</div>
         `)
     } else if (oWin === true) {
-      $('#game-alert').html(`
+      $('#msg-container').html(`
         <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
         O won!!</div>
         `)
     } else if (turn === 9) {
-      $('#game-alert').html(`
+      $('#msg-container').html(`
         <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
         Tie game.</div>
@@ -150,7 +150,7 @@ const onNewGame = function (event) {
   xWin = false
   oWin = false
   turn = 0
-  $('#game-alert').html(``)
+  $('#msg-container').html(``)
   // createGameApiConnection.onCreateGame(event)
   return (game.gameArray && xSpots && oSpots && xWin && oWin && turn)
 }
