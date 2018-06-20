@@ -28,7 +28,6 @@ const getGamesFail = function () {
 
 const createGameSuccess = function (data) {
   $('#msg-container').html('')
-  // $('#content').html('')
   store.game = data.game
   $('#msg-container').html(`
     <div class="alert alert-success alert-dismissable">
