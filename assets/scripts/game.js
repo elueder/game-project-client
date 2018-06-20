@@ -8,7 +8,9 @@ const gameClick = function (event) {
   if (store.over === true) {
     return
   } else if (event.target.innerHTML !== '') {
-    console.log('button already clicked')
+    $('#msg-container').html(`
+      <div class="alert alert-warning">Button already clicked. Choose a different square!</div>
+    `)
   } else {
     gameEvents.switchLetter(event)
     gameEvents.spotPlayed(event)
