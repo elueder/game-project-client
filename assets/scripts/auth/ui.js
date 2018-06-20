@@ -10,6 +10,8 @@ const signUpSuccess = function (signUpResponse) {
     Signed up! Please sign in.</div>
     `)
   document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const signUpError = function () {
@@ -20,6 +22,8 @@ const signUpError = function () {
     Couldn't create user.</div>
   `)
   document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const signInSuccess = function (signInResponse) {
@@ -30,7 +34,9 @@ const signInSuccess = function (signInResponse) {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Signed in!</div>
     `)
+  document.getElementById('sign-up-form').reset()
   document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const signInError = function () {
@@ -40,7 +46,9 @@ const signInError = function () {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't sign in.</div>
     `)
+  document.getElementById('sign-up-form').reset()
   document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const signOutSuccess = function (signOutResponse) {
@@ -50,6 +58,9 @@ const signOutSuccess = function (signOutResponse) {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Signed out.</div>
     `)
+  document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const signOutError = function (signOutResponse) {
@@ -58,6 +69,9 @@ const signOutError = function (signOutResponse) {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't sign out.</div>
     `)
+  document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
+  document.getElementById('change-password-form').reset()
 }
 
 const changePasswordSuccess = function () {
@@ -66,6 +80,8 @@ const changePasswordSuccess = function () {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Changed password!</div>
     `)
+  document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
   document.getElementById('change-password-form').reset()
 }
 
@@ -75,6 +91,8 @@ const changePasswordError = function () {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't change password.</div>
     `)
+  document.getElementById('sign-up-form').reset()
+  document.getElementById('sign-in-form').reset()
   document.getElementById('change-password-form').reset()
 }
 
