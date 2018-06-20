@@ -14,7 +14,8 @@ body {
 }
 
 .col-md-2,
-.col-xs-2 {
+.col-xs-2,
+.col-s-2 {
   align-items: left;
   border: solid $black $border-width;
   font-size: $game-piece-size;
