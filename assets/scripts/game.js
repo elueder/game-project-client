@@ -12,6 +12,7 @@ const gameClick = function (event) {
       <div class="alert alert-warning">Button already clicked. Choose a different square!</div>
     `)
   } else {
+    $('#msg-container').html(``)
     gameEvents.switchLetter(event)
     gameEvents.spotPlayed(event)
     gameEvents.indexToPush()
