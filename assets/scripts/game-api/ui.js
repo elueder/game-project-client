@@ -14,6 +14,7 @@ const getGamesSuccess = function (data) {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Number of games played: ${count}</div>
     `)
+  document.getElementById('change-password-form').reset()
 }
 
 const getGamesFail = function () {
@@ -24,6 +25,7 @@ const getGamesFail = function () {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     We can't count today!</div>
   `)
+  document.getElementById('change-password-form').reset()
 }
 
 const createGameSuccess = function (data) {
@@ -34,6 +36,7 @@ const createGameSuccess = function (data) {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     New Game Started!</div>
     `)
+  document.getElementById('change-password-form').reset()
   gameState()
 }
 
@@ -43,6 +46,7 @@ const createGameFail = function () {
   $('#msg-container').html(`
     <div class="alert alert-warning">Server Error.</div>
   `)
+  document.getElementById('change-password-form').reset()
 }
 
 const getGameSuccess = function (data) {
@@ -55,6 +59,7 @@ const getGameSuccess = function (data) {
     </div>`)
   // push book elements to content div
   $('#msg-container').append(gameHtml)
+  document.getElementById('change-password-form').reset()
 }
 
 const getGameFail = function () {
@@ -63,6 +68,7 @@ const getGameFail = function () {
     <button type="button" class="close" aria-hidden="true" data-dismiss="alert">&times;</button>
     Couldn't find that ID.</div>
   `)
+  document.getElementById('change-password-form').reset()
 }
 
 const gameState = function () {
